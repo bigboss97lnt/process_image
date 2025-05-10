@@ -1,0 +1,6 @@
+rembg
+pillow
+opencv-python
+numpy
+pyinstaller
+onnxruntime
