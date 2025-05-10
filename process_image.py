@@ -64,3 +64,21 @@ if __name__ == "__main__":
         print("Usage: python process_image.py input.jpg output.jpg")
     else:
         process_image(sys.argv[1], sys.argv[2])
+
+def process_directory(input_dir, output_dir, size=1000):
+    supported_exts = ('.jpg', '.jpeg', '.png', '.webp')
+    processed = 0
+    skipped = 0
+
+    for filename in os.listdir(input_dir):
+        if filename.lower().endswith(supported_exts):
+            input_path = os.path.join(input_dir, filename)
+            output_path = os.path.join(output_dir, filename)
+            try:
+                process_image(input_path, output_path, size)
+                processed += 1
+            except Exception as e:
+                print(f"Failed to process {filename}: {e}")
+                skipped += 1
+
+    return processed, skipped
